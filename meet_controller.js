@@ -1,57 +1,68 @@
 
 "use strict";
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    let icon = `notmuted.png` // default icon for notification
-    let message = `Could not locate Mute control in Google Meeting.` // default notification message
+chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
 
-    // find mute or unmute button on this Meeting page. only one of these will exist at a time
-    const muteButton = document.querySelector("[aria-label=’Turn off microphone’]")
-    const unmuteButton = document.querySelector("[aria-label=’Turn on microphone’]")
+    const turnOffMicButton = document.querySelector('[aria-label="Turn off microphone (⌘ + d)"]')
+    const turnOnMicButton = document.querySelector('[aria-label="Turn on microphone (⌘ + d)"]')
+    const turnOffCamButton = document.querySelector('[aria-label="Turn off camera (⌘ + e)"]')
+    const turnOnCamButton = document.querySelector('[aria-label="Turn on camera (⌘ + e)"]')
 
     // function for muting
-    const mute = () => {
-        const btn = muteButton
-        if (btn !== null) {
-            btn.click()
-            message = `Microphone is OFF`
-            icon = `muted.png`
-            sendResponse({
-                notification: {
-                    type: `basic`,
-                    iconUrl: icon,
-                    title: message,
-                    message: ``
-                }
-            })
-        }
+    // const mute = () => {
+    //     const btn = muteButton
+    //     if (btn !== null) {
+    //         btn.click()
+    //         message = `Microphone is OFF`
+    //         icon = `muted.png`
+    //         sendResponse({
+    //             notification: {
+    //                 type: `basic`,
+    //                 iconUrl: icon,
+    //                 title: message,
+    //                 message: ``
+    //             }
+    //         })
+    //     }
+    // }
+
+    // // function for unmuting
+    // const unmute = () => {
+    //     const btn = unmuteButton
+    //     if (btn !== null) {
+    //         btn.click()
+    //         message = `Microphone is ON`
+    //         icon = `notmuted.png`
+    //         sendResponse({
+    //             notification: {
+    //                 type: `basic`,
+    //                 iconUrl: icon,
+    //                 title: message,
+    //                 message: ``
+    //             }
+    //         })
+    //     }
+    // }
+
+    switch (request.command) {
+        case 'toggleMicrophone':
+            if (turnOffMicButton !== null) turnOffMicButton.click();
+            else turnOnMicButton.click()
+            break;
+        case 'toggleCamera':
+            if (turnOffCamButton !== null) turnOffCamButton.click();
+            else turnOnCamButton.click()
+            break;
+        default:
+            break;
     }
 
-    // function for unmuting
-    const unmute = () => {
-        const btn = unmuteButton
-        if (btn !== null) {
-            btn.click()
-            message = `Microphone is ON`
-            icon = `notmuted.png`
-            sendResponse({
-                notification: {
-                    type: `basic`,
-                    iconUrl: icon,
-                    title: message,
-                    message: ``
-                }
-            })
-        }
-    }
-
-
-    if (request.command === `toggle`) {
-        if (muteButton !== null) { // if the mute button exists, then the Mic is currently unmuted.
-            mute()
-        }
-        else { // … and vice-versa.
-            unmute()
-        }
-    }
+    // if (request.command === `toggleMicrophone`) {
+    //     if (muteButton !== null) { // if the mute button exists, then the Mic is currently unmuted.
+    //         mute()
+    //     }
+    //     else { // … and vice-versa.
+    //         unmute()
+    //     }
+    // }
 })

@@ -8,13 +8,21 @@
   "icons": {
     "128": "notmuted.png"
   },
-  "content_scripts": [{
-    "matches": ["https://meet.google.com/*"],
-    "run_at": "document_start",
-    "js": ["meet_controller.js"]
-  }],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*"
+      ],
+      "run_at": "document_start",
+      "js": [
+        "meet_controller.js"
+      ]
+    }
+  ],
   "background": {
-    "scripts": ["keyboard_listener.js"],
+    "scripts": [
+      "keyboard_listener.js"
+    ],
     "persistent": false
   },
   "permissions": [
@@ -22,12 +30,20 @@
     "notifications"
   ],
   "commands": {
-    "toggle": {
-      "description": "Toggle mute",
+    "toggleMicrophone": {
+      "description": "Toggle microphone",
       "global": true,
       "suggested_key": {
-        "default": "Ctrl+Shift+T",
-        "mac": "MacCtrl+Shift+T"
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggleCamera": {
+      "description": "Toggle camera",
+      "global": true,
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "MacCtrl+Shift+N"
       }
     }
   }
