@@ -1,2 +1,2 @@
 # Meet Toggler
-Toggle your Google Meet microphone and/or camera with global shortcuts
+Toggle your Google Meet microphone or camera with global shortcuts
