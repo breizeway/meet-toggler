@@ -9,8 +9,11 @@ A Chrome extension to toggle your Google Meet microphone or camera with global s
 - Click the "Load Unpacked" button
 - Select the directory you cloned
 
-### enable shortcuts
+### enable global shortcuts
 - Navigate to `chrome://extensions/shortcuts`
 - Find "Google Meet Input Toggler"
 - Click the edit button(s) to record keyboard shortcuts
-- Optionally make the shortcut(s) global so they also work when your browser is not the active window
+- Choose "Global" from the dropdown(s) to make the shortcut(s) global so they also work when your browser is not the active window
+
+## miscellaneous 
+- This has only been tested on MacOS, not sure if it will work elsewhere
