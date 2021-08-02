@@ -2,7 +2,7 @@
 chrome.commands.onCommand.addListener(command => {
     chrome.tabs.query({url: 'https://meet.google.com/*'}, tabs => {
         tabs.forEach(tab => {
-            chrome.tabs.sendMessage(tab.id, {command: command})
-        })
-    })
-})
+            chrome.tabs.sendMessage(tab.id, {command: command});
+        });
+    });
+});
