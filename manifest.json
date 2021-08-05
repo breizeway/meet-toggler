@@ -4,7 +4,7 @@
   "name": "Google Meet Input Toggler",
   "short_name": "Meet Toggler",
   "description": "Toggle your Google Meet microphone or camera with global shortcuts",
-  "version": "1.0",
+  "version": "1.0.1",
   "icons": {
     "128": "icon.png"
   },
